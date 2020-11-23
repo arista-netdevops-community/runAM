@@ -13,7 +13,7 @@ setup(
     description="runAM Python modules to build EVPN network",
     long_description=README,
     long_description_content_type="text/markdown",
-    url='https://github.com/<to-be-defined>',
+    url='https://github.com/arista-netdevops-community/runAM',
     author='Petr Ankudinov',
     license="BSD",
     classifiers=[
