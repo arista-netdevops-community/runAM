@@ -9,7 +9,7 @@
   - [Installation](#installation)
   - [Data Store](#data-store)
   - [CLI](#cli)
-  - [Important Dependancies](#important-dependancies)
+  - [Important Dependencies](#important-dependencies)
   - [Workflow](#workflow)
     - [Profiles](#profiles)
     - [Port (Server) Provisioning](#port-server-provisioning)
@@ -96,9 +96,9 @@ CLI can be easily adjusted by changing runAM.cli_spec. This dictionary has follo
 
 On top of runAM CLI, you can use [`jq` tool](https://stedolan.github.io/jq/) to query any data in the database json file.
 
-## Important Dependancies
+## Important Dependencies
 
-When possible runAM avoids dependancies to external packages to keep code clean and improve performance.
+When possible runAM avoids dependencies to external packages to keep code clean and improve performance.
 Neverhterless, some external packages are required for runAM to work:
 
 1. `argcomplete` - CLI auto completition for Python scripts. [https://pypi.org/project/argcomplete/](https://pypi.org/project/argcomplete/)
