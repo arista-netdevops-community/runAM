@@ -1,0 +1,5 @@
+---
+tags: ['fallback', 'port_channel', 'any description']
+fallback:
+  mode: individual
+  timeout: 50

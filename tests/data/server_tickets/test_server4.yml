@@ -1,0 +1,31 @@
+---
+  server_id: test_server4
+  notes:
+    - add ticket number
+    - or any other notes here
+  connections:
+    - switch_name: LEAF1A
+      switch_port: Ethernet2/1
+      speed: 100gfull
+      fec: false
+      port_channel:
+        group_number: 344
+        profiles:
+          - ['fallback', 'port_channel']
+        mode: active
+      switchport:
+        mode: trunk
+        vlan: 1, 60-70
+    - switch_name: LEAF1B
+      switch_port: Ethernet2/1
+      speed: 100gfull
+      fec: false
+      port_channel:
+        group_number: 344
+        profiles:
+          - ['fallback', 'port_channel']
+        mode: active
+      switchport:
+        mode: trunk
+        vlan: 1, 60-70
+  

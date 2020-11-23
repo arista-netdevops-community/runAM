@@ -1,0 +1,24 @@
+---
+server_id: test_server3
+notes:
+  - add ticket number
+  - or any other notes here
+connections:
+  - switch_name: LEAF1A
+    switch_port: Ethernet1/3
+    port_channel:
+      mode: active
+    switchport:
+      mode: trunk
+      vlan: 1, 5-55
+    profiles:
+      - ['fallback', 'port_channel']
+  - switch_name: LEAF1B
+    switch_port: Ethernet1/1
+    port_channel:
+      mode: active
+    switchport:
+      mode: trunk
+      vlan: 1, 5-55
+    profiles:
+      - ['fallback', 'port_channel']
