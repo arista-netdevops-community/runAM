@@ -78,7 +78,7 @@ For details about CLI autocompletetion please refer to [argcomplete documentatio
 
 CLI can be easily adjusted by changing runAM.cli_spec. This dictionary has following data structure:
 
-```json
+```python
 {
     <cli-command>: {
         'python_module': <python module to be triggered by this command>,
