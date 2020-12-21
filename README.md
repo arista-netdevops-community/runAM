@@ -20,8 +20,10 @@
 
 - 0.1.1
   - First version with a small subset of runAM features required for port provisioning
-- 0.1.2 (Current Release)
+- 0.1.2
   - Bug fix for port configuration data generation.
+- 0.1.3 (Current Release)
+  - Bug fix for port configuration data generation: single ticket for every connection to avoid switch_name overwrite
 
 ## Disclaimer
 
