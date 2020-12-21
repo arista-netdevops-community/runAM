@@ -47,7 +47,6 @@ class PortConfigGenerator(runAM.db.JSONStore):
         # build low level port configuration data
         # > check every server ticket
         for doc_id, server_ticket in self.table('server_tickets_expanded').items():
-            server_ports_ticket = dict()
 
             # > if port-channel is configured and no group defined, generate LACP group number
             lacp_group_number = 0
@@ -86,6 +85,7 @@ class PortConfigGenerator(runAM.db.JSONStore):
 
             # > check every server connection
             for connection in server_ticket['connections']:
+                server_ports_ticket = dict()
                 cd = GlomDict()  # cd - short for connection details
 
                 # the switch name the node is connected to
