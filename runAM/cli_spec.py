@@ -81,6 +81,11 @@ cli_spec = {
             }
         ]
     },
+    # generators
+    'generate.port_config_data': {
+        'python_module': 'runAM.generate.PortConfigGenerator().generatePortConfigData',
+        'help': 'Generate low level data to parse port configuration templates.',
+    },
     # tools
     'tools.time_stamp': {
         'python_module': 'runAM.tools.time_stamp',
