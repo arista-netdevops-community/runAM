@@ -130,4 +130,8 @@ class PortConfigGenerator(runAM.db.JSONStore):
                 server_ports_ticket = runAM.tools.merge_data_objects(server_ports_ticket, cd)
 
                 self.insert_doc(server_ports_ticket, table_name='port_config_data')
+
+        self.write()
+
+        return 'Port config data generated successfully!'
         

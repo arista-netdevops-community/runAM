@@ -22,6 +22,13 @@ cli_spec = {
                 'arg_name': '--input_file',
                 'arg_short_name': '-inf',
                 'help': 'Filename to load input data.',
+            },
+            {
+                'arg_name': '--skip_port_cfg_gen',
+                'arg_short_name': '-skip_pcfg',
+                'help': 'Generate port configuration data',
+                'default': False,
+                'action': 'store_true',
             }
         ]
     },
