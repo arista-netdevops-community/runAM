@@ -33,7 +33,7 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
         inserted_doc_id = self.insert_doc(ticket_data, table_name='server_tickets')
         return inserted_doc_id
 
-    def addServerTicket(self, in_data):
+    def addServerTicket(self, in_data, skip_port_cfg_gen=False):
         """Insert single or multiple server tikets into the server_tickets table.
 
         Args:
@@ -60,7 +60,8 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
                 doc_number_list.append(doc_number)
         else:
             sys.exit('ERROR: Input data must be a dictionary or a list.')
-        self.generatePortConfigData()  # generate low level port config data after inserting a new server
+        if not skip_port_cfg_gen:
+            self.generatePortConfigData()  # generate low level port config data after inserting a new server
         self.write()
         return doc_number_list
 

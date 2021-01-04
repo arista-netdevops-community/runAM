@@ -22,6 +22,13 @@ cli_spec = {
                 'arg_name': '--input_file',
                 'arg_short_name': '-inf',
                 'help': 'Filename to load input data.',
+            },
+            {
+                'arg_name': '--skip_port_cfg_gen',
+                'arg_short_name': '-skip_pcfg',
+                'help': 'Generate port configuration data',
+                'default': False,
+                'action': 'store_true',
             }
         ]
     },
@@ -80,6 +87,11 @@ cli_spec = {
                 'help': 'Find a profile with specified tags. For example: --tags tag1, tag2, ...',
             }
         ]
+    },
+    # generators
+    'generate.port_config_data': {
+        'python_module': 'runAM.generate.PortConfigGenerator().generatePortConfigData',
+        'help': 'Generate low level data to parse port configuration templates.',
     },
     # tools
     'tools.time_stamp': {
