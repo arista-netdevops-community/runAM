@@ -84,20 +84,17 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
                 server_match_list.append({doc_id: doc})
             else:
                 for a_connection in doc['connections']:
-                    if a_connection['switch_name'] == switch_name:
-                        if not switch_port:
-                            # if switch_port is not specified, match all tickets with specified switch_name
+                    if not switch_port:
+                        # if switch_port is not specified, match all tickets with specified switch_name
+                        if a_connection['switch_name'] == switch_name:
                             server_match_list.append({doc_id: doc})
-                        elif a_connection['switch_port'] == switch_port:
-                            # if switch_port is specified, match only the ticket with specified switch_name/switch_port
+                    elif not switch_name:
+                        # if switch_name is not specified, match all tickets with the specified port_name
+                        if a_connection['switch_port'] == switch_port:
                             server_match_list.append({doc_id: doc})
-                        
-                    if a_connection['switch_port'] == switch_port:
-                        if not switch_name:
-                            # if switch_name is not specified, match all tickets with the specified port_name
-                            server_match_list.append({doc_id: doc})
-                        elif a_connection['switch_name'] == switch_name:
-                            # if switch_name is specified, match only the ticket with specified switch_name/switch_port
+                    else:
+                        # if switch_port and switch_name are specified, match only the ticket with specified switch_name/switch_port
+                        if (a_connection['switch_name'] == switch_name) and (a_connection['switch_port'] == switch_port):
                             server_match_list.append({doc_id: doc})
         return server_match_list
 
