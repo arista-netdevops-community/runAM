@@ -50,7 +50,7 @@ cli_spec = {
             {
                 'arg_name': '--server_id',
                 'arg_short_name': '-sid',
-                'help': 'Find a server with specified ID.',
+                'help': 'Find server ticket with specified ID.',
             },
             {
                 'arg_name': '--switch_name',
