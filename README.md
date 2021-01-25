@@ -24,9 +24,10 @@
   - Bug fix for port configuration data generation.
 - 0.1.3
   - Bug fix for port configuration data generation: single ticket for every connection to avoid switch_name overwrite
-- 0.1.4 (Current Release)
+- 0.1.4
   - Add cli argument to add port ticket without generating low level port config data
   - Add dedicated command to trigger port config generation
+- 0.1.5 (Current Release)
 
 ## Disclaimer
 

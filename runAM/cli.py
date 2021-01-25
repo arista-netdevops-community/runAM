@@ -13,7 +13,7 @@ def add_arguments(a_parser, argument_list):
 
     Args:
         a_parser (argparse parser object): a parser to modify
-        argument_list (list): list of agument specification dictionaries
+        argument_list (list): list of augment specification dictionaries
     """
 
     for an_argument in argument_list:
@@ -39,7 +39,7 @@ def add_arguments(a_parser, argument_list):
 
 def parse():
     # Build CLI for runAMcli from cli_spec.py
-    # runAMcli is using argcomplete. To enable autocompletition, follow the docs here:
+    # runAMcli is using argcomplete. To enable autocompletion, follow the docs here:
     # https://kislyuk.github.io/argcomplete/
     # TL;DR switch to bash and run: eval "$(register-python-argcomplete runAMcli)"
     parser = argparse.ArgumentParser(
