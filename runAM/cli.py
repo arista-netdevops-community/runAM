@@ -156,4 +156,7 @@ def interpreter():
     out_data = runAM.cli.run_module(python_module_name, args)
     if 'echo' in args.keys():
         if args['echo']:
-            print(out_data)  # TODO: consider logging
+            if isinstance(out_data, dict) or isinstance(out_data, list):
+                print(json.dumps(out_data, indent=4))
+            else:
+                print(out_data)  # TODO: consider logging
