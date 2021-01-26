@@ -183,7 +183,10 @@ Commands:
   - Build low level data required to parse configuration templates.
   - Write the change into the data store on disk.
 - `runAM server.query --server_id <server ID>`
-  Find a server ticket matching specified server ID.
+  Find a server ticket matching specified server ID. It is also possible to search tickets by `--switch_name` and/or `--switch_port`.  
+  `--print_yaml` can be used to print output as YAML. That is typically required to dump a ticket for editing.  
+  For example, `runAM server.query --switch.name LEAF1 --switch.port Ethernet12/1 --print_yaml` will search for a ticket used to provision Ethernet12/1 on LEAF1. Output will be printed as YAML.  
+  Use `--print_docIDs` to print document IDs if required.
 - `runAM server.delete --server_id <server ID>`
   Delete a server ticket matching specified server ID.
   Actions:
