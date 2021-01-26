@@ -28,6 +28,10 @@
   - Add cli argument to add port ticket without generating low level port config data
   - Add dedicated command to trigger port config generation
 - 0.1.5 (Current Release)
+  - Add cli arguments to query server tickets by switch name and switch port.
+  - Add cli argument to dump server tickets as YAML docs.
+  - Do not print docID for server tickets by default. Add cli arguments to print docIDs if required.
+  - Print JSON data in a nice format.
 
 ## Disclaimer
 
