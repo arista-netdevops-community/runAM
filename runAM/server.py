@@ -113,6 +113,7 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
             return server_match_list
         else:
             server_match_list_as_yaml = yaml.dump_all(server_match_list, default_flow_style=False)
+            return server_match_list_as_yaml
 
 
     def deleteServerTicket(self, server_id):
