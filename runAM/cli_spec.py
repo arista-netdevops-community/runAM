@@ -61,7 +61,14 @@ cli_spec = {
                 'arg_name': '--switch_port',
                 'arg_short_name': '-port',
                 'help': 'Find server tickets for a specified switch port name.',
-            }
+            },
+            {
+                'arg_name': '--yaml',
+                'arg_short_name': '-yml',
+                'help': 'Print matched tickets as YAML docs.',
+                'default': False,
+                'action': 'store_true'
+            },
         ]
     },
     # profile
