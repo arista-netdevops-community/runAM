@@ -2,7 +2,7 @@
 
 cli_spec = {
     '__main_parser': {
-        'help': '=== runAM (run Arista Module) CLI help ===',
+        'help': '=== runAM (run Arista Module) CLI help ===\n    To enable autocomplete run: eval "$(register-python-argcomplete runAM)"',
         'add_argument': [
             {
                 'arg_name': '--echo',
@@ -50,8 +50,32 @@ cli_spec = {
             {
                 'arg_name': '--server_id',
                 'arg_short_name': '-sid',
-                'help': 'Find a server with specified ID.',
-            }
+                'help': 'Find server ticket with specified ID.',
+            },
+            {
+                'arg_name': '--switch_name',
+                'arg_short_name': '-sw',
+                'help': 'Find server tickets for a specified switch hostname.',
+            },
+            {
+                'arg_name': '--switch_port',
+                'arg_short_name': '-port',
+                'help': 'Find server tickets for a specified switch port name.',
+            },
+            {
+                'arg_name': '--print_yaml',
+                'arg_short_name': '-yml',
+                'help': 'Print matched tickets as YAML docs.',
+                'default': False,
+                'action': 'store_true'
+            },
+            {
+                'arg_name': '--print_docIDs',
+                'arg_short_name': '-docID',
+                'help': 'Print document IDs for matched tickets. Not printed by default.',
+                'default': False,
+                'action': 'store_true'
+            },
         ]
     },
     # profile

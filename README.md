@@ -24,9 +24,14 @@
   - Bug fix for port configuration data generation.
 - 0.1.3
   - Bug fix for port configuration data generation: single ticket for every connection to avoid switch_name overwrite
-- 0.1.4 (Current Release)
+- 0.1.4
   - Add cli argument to add port ticket without generating low level port config data
   - Add dedicated command to trigger port config generation
+- 0.1.5 (Current Release)
+  - Add cli arguments to query server tickets by switch name and switch port.
+  - Add cli argument to dump server tickets as YAML docs.
+  - Do not print docID for server tickets by default. Add cli arguments to print docIDs if required.
+  - Print JSON data in a nice format.
 
 ## Disclaimer
 
@@ -42,7 +47,7 @@ runAM-evpn is not a replacement for Ansible-AVD, but provides alternative approa
 ## Overview
 
 runAM stands for "run A Module".
-runam-evpn package contains number of Python modules required to provision Arista EVPN network.
+runAM-evpn package contains number of Python modules required to provision Arista EVPN network.
 Every module is focused on a specific task. Modules can be changes, unplugged or re-arranged as required, but some modules depend on the data produced by other modules. Please check [Workflow](#workflow) section before making any changes.
 
 runAM can be used in 3 different ways:
@@ -51,21 +56,21 @@ runAM can be used in 3 different ways:
 - Execute runAM module with `python3 -m runAM <cli-arguments>`
 - Use build in runAM CLI. Execute `runAM --help` for details.
 
-runAM motto is KISS. Always focus on simplicity, readability and ease of maintanance. Features and code optimisation are secondary if not improving simplicity.
+runAM motto is KISS. Always focus on simplicity, readability and ease of maintenance. Features and code optimization are secondary if not improving simplicity.
 
 ## Installation
 
 1. Create `database` directory.
 2. Install runAM: `pip install runAM-evpn`
-3. Enable CLI autocompletition: `eval "$(register-python-argcomplete runAM)"`
+3. Enable CLI autocompletion: `eval "$(register-python-argcomplete runAM)"`
 
-For details about CLI autocompletetion please refer to [argcomplete documentation](https://kislyuk.github.io/argcomplete/).
+For details about CLI autocompletion please refer to [argcomplete documentation](https://kislyuk.github.io/argcomplete/).
 
 ## Data Store
 
 Different runAM modules can exchange the data using common data store.
 An instance of JSONStore class is initialized when a module starts and provides number of methods for simplified access to a json file holding the data (`db.json` by default).
-Reling on a simple JSON file allows to reduce complexity, eliminate unnecessary dependancies and use Git version control.
+Relying on a simple JSON file allows to reduce complexity, eliminate unnecessary dependencies and use Git version control.
 The data store class can be extended to support any database that is capable to store JSON data.
 
 Following classes can be used to interact with the data store:
@@ -78,10 +83,10 @@ Following classes can be used to interact with the data store:
 ## CLI
 
 runAM provides basic CLI to control typical network provisioning operations.  
-Using CLI is not mandatory. Every module can be called from any 3rd party tool or script. However runAM CLI helps to eliminate dependancies and is the fastest way to start using runAM modules.
+Using CLI is not mandatory. Every module can be called from any 3rd party tool or script. However runAM CLI helps to eliminate dependencies and is the fastest way to start using runAM modules.
 runAM CLI is available once the module is installed. Use `runAM --help` to get details.  
-To enable autocompletition, use `eval "$(register-python-argcomplete runAM)"`.  
-For details about CLI autocompletetion please refer to [argcomplete documentation](https://kislyuk.github.io/argcomplete/).
+To enable autocompletion, use `eval "$(register-python-argcomplete runAM)"`.  
+For details about CLI autocompletion please refer to [argcomplete documentation](https://kislyuk.github.io/argcomplete/).
 
 CLI can be easily adjusted by changing runAM.cli_spec. This dictionary has following data structure:
 
@@ -106,9 +111,9 @@ On top of runAM CLI, you can use [`jq` tool](https://stedolan.github.io/jq/) to 
 ## Important Dependencies
 
 When possible runAM avoids dependencies to external packages to keep code clean and improve performance.
-Neverhterless, some external packages are required for runAM to work:
+Nevertheless, some external packages are required for runAM to work:
 
-1. `argcomplete` - CLI auto completition for Python scripts. [https://pypi.org/project/argcomplete/](https://pypi.org/project/argcomplete/)
+1. `argcomplete` - CLI autocompletion for Python scripts. [https://pypi.org/project/argcomplete/](https://pypi.org/project/argcomplete/)
 2. `PyYAML` - read/write YAML data. [https://pypi.org/project/PyYAML/](https://pypi.org/project/PyYAML/)
 3. `glom` - for easy access to nested data structures. It helps to keep code compact and readable. [https://pypi.org/project/glom/](https://pypi.org/project/glom/)
 4. `jq` - jq for Python. Used to make recursive queries with a reasonable performance. [https://pypi.org/project/jq/](https://pypi.org/project/jq/)
@@ -157,7 +162,7 @@ Commands:
 - `runAM profile.delete --tags tag1,tag2,...`
   Delete all profile tickets matching specified tag list. Save that to the disk.
 
-**IMPORTANT**: profiles must be defined before defining any data structures reling on these profiles.
+**IMPORTANT**: profiles must be defined before defining any data structures relying on these profiles.
 
 ### Port (Server) Provisioning
 
@@ -178,7 +183,10 @@ Commands:
   - Build low level data required to parse configuration templates.
   - Write the change into the data store on disk.
 - `runAM server.query --server_id <server ID>`
-  Find a server ticket matching specified server ID.
+  Find a server ticket matching specified server ID. It is also possible to search tickets by `--switch_name` and/or `--switch_port`.  
+  `--print_yaml` can be used to print output as YAML. That is typically required to dump a ticket for editing.  
+  For example, `runAM server.query --switch.name LEAF1 --switch.port Ethernet12/1 --print_yaml` will search for a ticket used to provision Ethernet12/1 on LEAF1. Output will be printed as YAML.  
+  Use `--print_docIDs` to print document IDs if required.
 - `runAM server.delete --server_id <server ID>`
   Delete a server ticket matching specified server ID.
   Actions:

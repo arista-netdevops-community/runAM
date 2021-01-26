@@ -13,7 +13,7 @@ def add_arguments(a_parser, argument_list):
 
     Args:
         a_parser (argparse parser object): a parser to modify
-        argument_list (list): list of agument specification dictionaries
+        argument_list (list): list of augment specification dictionaries
     """
 
     for an_argument in argument_list:
@@ -39,7 +39,7 @@ def add_arguments(a_parser, argument_list):
 
 def parse():
     # Build CLI for runAMcli from cli_spec.py
-    # runAMcli is using argcomplete. To enable autocompletition, follow the docs here:
+    # runAMcli is using argcomplete. To enable autocompletion, follow the docs here:
     # https://kislyuk.github.io/argcomplete/
     # TL;DR switch to bash and run: eval "$(register-python-argcomplete runAMcli)"
     parser = argparse.ArgumentParser(
@@ -156,4 +156,7 @@ def interpreter():
     out_data = runAM.cli.run_module(python_module_name, args)
     if 'echo' in args.keys():
         if args['echo']:
-            print(out_data)  # TODO: consider logging
+            if isinstance(out_data, dict) or isinstance(out_data, list):
+                print(json.dumps(out_data, indent=4))
+            else:
+                print(out_data)  # TODO: consider logging
