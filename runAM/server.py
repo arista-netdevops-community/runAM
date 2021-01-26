@@ -67,7 +67,7 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
         self.write()
         return doc_number_list
 
-    def queryServerTicket(self, server_id='', switch_name='', switch_port='', print_yaml=False):
+    def queryServerTicket(self, server_id='', switch_name='', switch_port='', print_yaml=False, print_docIDs=False):
         """Find server ticket in server_tickets table, that is matching server_id.
 
         Args:
@@ -82,21 +82,33 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
         for doc_id, doc in self.table('server_tickets').items():
             if doc['server_id'] == server_id:
                 # server_id is unique. If there is a match, no need to check other conditions
-                server_match_list.append({doc_id: doc})
+                if print_docIDs:
+                    server_match_list.append({doc_id: doc})
+                else:
+                    server_match_list.append(doc)
             else:
                 for a_connection in doc['connections']:
                     if not switch_port:
                         # if switch_port is not specified, match all tickets with specified switch_name
                         if a_connection['switch_name'] == switch_name:
-                            server_match_list.append({doc_id: doc})
+                            if print_docIDs:
+                                server_match_list.append({doc_id: doc})
+                            else:
+                                server_match_list.append(doc)
                     elif not switch_name:
                         # if switch_name is not specified, match all tickets with the specified port_name
                         if a_connection['switch_port'] == switch_port:
-                            server_match_list.append({doc_id: doc})
+                            if print_docIDs:
+                                server_match_list.append({doc_id: doc})
+                            else:
+                                server_match_list.append(doc)
                     else:
                         # if switch_port and switch_name are specified, match only the ticket with specified switch_name/switch_port
                         if (a_connection['switch_name'] == switch_name) and (a_connection['switch_port'] == switch_port):
-                            server_match_list.append({doc_id: doc})
+                            if print_docIDs:
+                                server_match_list.append({doc_id: doc})
+                            else:
+                                server_match_list.append(doc)
         if not print_yaml:
             return server_match_list
         else:

@@ -69,6 +69,13 @@ cli_spec = {
                 'default': False,
                 'action': 'store_true'
             },
+            {
+                'arg_name': '--print_docIDs',
+                'arg_short_name': '-docID',
+                'help': 'Print document IDs for matched tickets. Not printed by default.',
+                'default': False,
+                'action': 'store_true'
+            },
         ]
     },
     # profile
