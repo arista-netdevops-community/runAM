@@ -1,5 +1,6 @@
 import runAM
 import sys
+import yaml
 
 class ServerTicketStore(runAM.generate.PortConfigGenerator):
     
@@ -66,7 +67,7 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
         self.write()
         return doc_number_list
 
-    def queryServerTicket(self, server_id='', switch_name='', switch_port=''):
+    def queryServerTicket(self, server_id='', switch_name='', switch_port='', print_yaml=False):
         """Find server ticket in server_tickets table, that is matching server_id.
 
         Args:
@@ -96,7 +97,11 @@ class ServerTicketStore(runAM.generate.PortConfigGenerator):
                         # if switch_port and switch_name are specified, match only the ticket with specified switch_name/switch_port
                         if (a_connection['switch_name'] == switch_name) and (a_connection['switch_port'] == switch_port):
                             server_match_list.append({doc_id: doc})
-        return server_match_list
+        if not print_yaml:
+            return server_match_list
+        else:
+            server_match_list_as_yaml = yaml.dump_all(server_match_list, default_flow_style=False)
+
 
     def deleteServerTicket(self, server_id):
         """Delete server ticket in server_tickets table, that is matching server_id.
