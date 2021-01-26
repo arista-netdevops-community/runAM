@@ -74,7 +74,7 @@ class PortConfigGenerator(runAM.db.JSONStore):
                 elif len(lowest_member_digits) == 3:
                     generated_group_number = int(f'1{lowest_member_digits}')
                 else:
-                    sys.exit('ERROR: Can not build port-channel name as memer interface name has more than 3 digits.')
+                    sys.exit('ERROR: Can not build port-channel name as member interface name has more than 3 digits.')
                 # check there is a conflict with a manually defined number defined for some connections by mistake
                 if lacp_group_number:
                     if lacp_group_number != generated_group_number:
